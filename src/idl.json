@@ -1,0 +1,190 @@
+{
+  "version": "0.1.0",
+  "name": "network_cidadao",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "submitAction",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "actionName",
+          "type": "string"
+        },
+        {
+          "name": "actionDescription",
+          "type": "string"
+        },
+        {
+          "name": "actionType",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "reviewAction",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "actionApproved",
+          "type": "bool"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "BaseAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "totalActions",
+            "type": "u64"
+          },
+          {
+            "name": "reviewedActionList",
+            "type": {
+              "vec": {
+                "defined": "ItemStruct"
+              }
+            }
+          },
+          {
+            "name": "pendingActionList",
+            "type": {
+              "vec": {
+                "defined": "ItemStruct"
+              }
+            }
+          },
+          {
+            "name": "approvedActionList",
+            "type": {
+              "vec": {
+                "defined": "ItemStruct"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "ItemStruct",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "actionName",
+            "type": "string"
+          },
+          {
+            "name": "actionId",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "actionRequesterAddress",
+            "type": "publicKey"
+          },
+          {
+            "name": "actionAssigneeAddress",
+            "type": {
+              "option": "publicKey"
+            }
+          },
+          {
+            "name": "actionAssigneeName",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "actionDescription",
+            "type": "string"
+          },
+          {
+            "name": "actionType",
+            "type": "string"
+          },
+          {
+            "name": "actionRequestedTime",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "actionLocation",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "actionStatus",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "actionApproved",
+            "type": "bool"
+          },
+          {
+            "name": "actionComments",
+            "type": {
+              "vec": "string"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "address": "Czu3SZdaZoHxX6X3yohJxnsGEuHNfy6frnAdJQYS6qHv"
+  }
+}
